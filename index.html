@@ -426,17 +426,101 @@
        RESPONSIVE
        ============================= */
 
-    @media (max-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      nav { flex-wrap: wrap; justify-content: flex-end; }
-      .project-list { grid-template-columns: 1fr; }
-      .hero-card-wrapper {
-        padding: 40px 12px;
-      }
-      h1 {
-        font-size: 30px;
-      }
-    }
+    /* ===== 平板（橫向 iPad 之類，版型幾乎跟桌機一樣，只是稍微緊一點） ===== */
+@media (max-width: 1024px) {
+  .page {
+    padding: 20px 12px 32px;
+  }
+
+  section {
+    padding: 22px 18px 24px;
+  }
+
+  .hero-card-wrapper {
+    padding: 48px 12px 44px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}
+
+/* ===== 手機（直立手機）版：保持版型，但放大字、縮小邊距、改成單欄 ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;             /* 全站字體稍微放大一點 */
+  }
+
+  header {
+    padding: 10px 12px;
+    flex-wrap: wrap;             /* 讓 logo 和 nav 可以換行 */
+    row-gap: 6px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: flex-start; /* 導覽列拉到左邊 */
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .page {
+    padding: 18px 10px 26px;     /* 內縮一點，邊界不要那麼擠 */
+  }
+
+  section {
+    margin-bottom: 18px;
+    padding: 18px 14px 20px;     /* 區塊變薄一點，閱讀起來比較緊湊 */
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;  /* ABOUT / FOCUS 改成上下排 */
+    gap: 12px;
+  }
+
+  .hero-card-wrapper {
+    padding: 36px 8px 32px;
+  }
+
+  .hero-card {
+    padding: 0 4px;
+  }
+
+  h1 {
+    font-size: 26px;             /* 標題縮小，避免手機一行塞不下 */
+  }
+
+  .hero-main {
+    font-size: 14px;
+  }
+
+  .hero-meta {
+    font-size: 12px;
+  }
+
+  .pill-list,
+  .focus-tags {
+    gap: 6px;
+  }
+
+  .pill,
+  .tag {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .card-item,
+  .project-card {
+    padding: 12px 12px 16px;     /* 卡片上下縮一點，方便滑動 */
+  }
+
+  .project-list {
+    grid-template-columns: 1fr;  /* Portfolio 改成單欄，一卡佔滿寬度 */
+    gap: 12px;
+  }
+}
+
   </style>
 </head>
 

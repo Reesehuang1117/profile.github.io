@@ -6,43 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* ===== 手機專用 Header 與導航 ===== */
-@media (max-width: 768px) {
-
-  /* Header 整體：上下留白更小 */
-  header {
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-  }
-
-  /* 第一行：RH Logo + Dark 按鈕 */
-  .header-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* 第二行：導覽列排列成可換行但居中的模式 */
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center !important;   /* ⭐ 導覽列置中 */
-    gap: 10px 14px;                       /* 上下10px 左右14px */
-    font-size: 14px;
-    width: 100%;
-    padding-top: 4px;
-  }
-
-  /* Dark 按鈕：縮小，放右上 */
-  #theme-toggle {
-    padding: 4px 10px;
-    font-size: 14px;
-  }
-}
-
     * { box-sizing: border-box; }
 
     /* 文字反白顏色：避免看不到字 */
@@ -64,7 +27,7 @@
       transition: background 0.25s ease, color 0.25s ease;
     }
 
-    /* 錨點預留空間，避免被 header 擋住 */
+    /* 錨點預留空間，避免被 header 擋住（桌機 / 平板） */
     #about,
     #experience,
     #skills,
@@ -74,7 +37,7 @@
     }
 
     /* =============================
-       NAV
+       HEADER / NAV（桌機預設）
        ============================= */
 
     header {
@@ -82,12 +45,18 @@
       top: 0;
       z-index: 1000;
       padding: 12px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       background: #ffffffcc;
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column; /* 上排：logo+dark，下排：nav */
+      gap: 6px;
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
@@ -118,6 +87,7 @@
       gap: 16px;
       font-size: 14px;
       align-items: center;
+      justify-content: flex-end;  /* 桌機：nav 靠右 */
     }
 
     nav a {
@@ -463,142 +433,147 @@
        RESPONSIVE
        ============================= */
 
-    /* ===== 平板（橫向 iPad 之類，版型幾乎跟桌機一樣，只是稍微緊一點） ===== */
-@media (max-width: 1024px) {
-  .page {
-    padding: 20px 12px 32px;
-  }
+    /* 平板（橫向 iPad） */
+    @media (max-width: 1024px) {
+      .page {
+        padding: 20px 12px 32px;
+      }
 
-  section {
-    padding: 22px 18px 24px;
-  }
+      section {
+        padding: 22px 18px 24px;
+      }
 
-  .hero-card-wrapper {
-    padding: 48px 12px 44px;
-  }
+      .hero-card-wrapper {
+        padding: 48px 12px 44px;
+      }
 
-  h1 {
-    font-size: 32px;
-  }
-}
+      h1 {
+        font-size: 32px;
+      }
+    }
 
-/* ===== 手機（直立手機）版：保持版型，但放大字、縮小邊距、改成單欄 ===== */
-@media (max-width: 768px) {
-  body {
-    font-size: 15px;             /* 全站字體稍微放大一點 */
-  }
+    /* 手機（直立） */
+    @media (max-width: 768px) {
 
-  header {
-    padding: 10px 12px;
-    flex-wrap: wrap;             /* 讓 logo 和 nav 可以換行 */
-    row-gap: 6px;
-  }
+      body {
+        font-size: 15px;
+      }
 
-  nav {
-    width: 100%;
-    justify-content: flex-start; /* 導覽列拉到左邊 */
-    flex-wrap: wrap;
-    gap: 12px;
-    font-size: 13px;
-  }
+      /* 讓手機版錨點往下多留一點空間，避免被 header 蓋住 */
+      #about,
+      #experience,
+      #skills,
+      #portfolio,
+      #contact {
+        scroll-margin-top: 120px;
+      }
 
-  .page {
-    padding: 18px 10px 26px;     /* 內縮一點，邊界不要那麼擠 */
-  }
+      header {
+        padding: 10px 14px;
+        gap: 6px;
+      }
 
-  section {
-    margin-bottom: 18px;
-    padding: 18px 14px 20px;     /* 區塊變薄一點，閱讀起來比較緊湊 */
-  }
+      .header-top-row {
+        justify-content: space-between;   /* 左 logo，右 Dark */
+        align-items: center;
+      }
 
-  .grid-2 {
-    grid-template-columns: 1fr;  /* ABOUT / FOCUS 改成上下排 */
-    gap: 12px;
-  }
+      nav {
+        width: 100%;
+        justify-content: center;         /* ⭐ 導覽列置中 */
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        font-size: 14px;
+        padding-top: 2px;
+      }
 
-  .hero-card-wrapper {
-    padding: 36px 8px 32px;
-  }
+      #theme-toggle {
+        padding: 4px 10px;
+        font-size: 14px;
+      }
 
-  .hero-card {
-    padding: 0 4px;
-  }
+      .page {
+        padding: 18px 10px 26px;
+      }
 
-  h1 {
-    font-size: 26px;             /* 標題縮小，避免手機一行塞不下 */
-  }
+      section {
+        margin-bottom: 18px;
+        padding: 18px 14px 20px;
+      }
 
-  .hero-main {
-    font-size: 14px;
-  }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
 
-  .hero-meta {
-    font-size: 12px;
-  }
+      .hero-card-wrapper {
+        padding: 36px 8px 32px;
+      }
 
-  .pill-list,
-  .focus-tags {
-    gap: 6px;
-  }
+      .hero-card {
+        padding: 0 4px;
+      }
 
-  .pill,
-  .tag {
-    font-size: 12px;
-    padding: 3px 8px;
-  }
+      h1 {
+        font-size: 26px;
+      }
 
-  .card-item,
-  .project-card {
-    padding: 12px 12px 16px;     /* 卡片上下縮一點，方便滑動 */
-  }
+      .hero-main {
+        font-size: 14px;
+      }
 
-  .project-list {
-    grid-template-columns: 1fr;  /* Portfolio 改成單欄，一卡佔滿寬度 */
-    gap: 12px;
-  }
-}
+      .hero-meta {
+        font-size: 12px;
+      }
 
+      .pill-list,
+      .focus-tags {
+        gap: 6px;
+      }
+
+      .pill,
+      .tag {
+        font-size: 12px;
+        padding: 3px 8px;
+      }
+
+      .card-item,
+      .project-card {
+        padding: 12px 12px 16px;
+      }
+
+      .project-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-/* ===== 手機專用 Header 與導航 ===== */
-@media (max-width: 768px) {
+  <!-- HEADER -->
+  <header>
+    <div class="header-top-row">
+      <div class="logo">
+        <span class="logo-mark">RH.</span>
+        <span class="logo-text">REESE HUANG</span>
+      </div>
 
-  /* Header 整體：上下留白更小 */
-  header {
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-  }
+      <button id="theme-toggle" type="button">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-label">Dark</span>
+      </button>
+    </div>
 
-  /* 第一行：RH Logo + Dark 按鈕 */
-  .header-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* 第二行：導覽列排列成可換行但居中的模式 */
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center !important;   /* ⭐ 導覽列置中 */
-    gap: 10px 14px;                       /* 上下10px 左右14px */
-    font-size: 14px;
-    width: 100%;
-    padding-top: 4px;
-  }
-
-  /* Dark 按鈕：縮小，放右上 */
-  #theme-toggle {
-    padding: 4px 10px;
-    font-size: 14px;
-  }
-}
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
   <!-- HERO -->
   <div class="hero-card-wrapper">

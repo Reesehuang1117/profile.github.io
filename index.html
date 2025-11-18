@@ -354,7 +354,7 @@
       color: #f1f5f9;
     }
 
-    /* header 在 dark-mode 仍保持同一條藍色漸層，不覆蓋 */
+    /* header 在 dark-mode 仍保持同一條藍色漸層 */
 
     /* Dark 模式：hero 跟底色一樣（不再用漸層） */
     body.dark-mode .hero-card-wrapper {
@@ -448,8 +448,9 @@
         scroll-margin-top: 120px;
       }
 
+      /* 手機版 header 兩邊瘦一點 */
       header {
-        padding: 10px 14px;
+        padding: 8px 12px;
         gap: 6px;
       }
 
@@ -458,11 +459,12 @@
         align-items: center;
       }
 
+      /* 手機版 nav：置中 + 平均分布 */
       nav {
         width: 100%;
-        justify-content: center;         /* 手機 nav 置中 */
+        justify-content: space-evenly;
         flex-wrap: wrap;
-        gap: 8px 14px;
+        gap: 4px 8px;
         font-size: 14px;
         padding-top: 2px;
       }
@@ -486,12 +488,13 @@
         gap: 12px;
       }
 
+      /* 手機版 hero：外層全寬，內部再瘦身 */
       .hero-card-wrapper {
-        padding: 36px 8px 32px;
+        padding: 32px 0 30px;
       }
 
       .hero-card {
-        padding: 0 4px;
+        padding: 0 16px;
       }
 
       h1 {
@@ -755,4 +758,3 @@
 
 </body>
 </html>
-

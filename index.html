@@ -6,6 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
+    /* ===== 手機專用 Header 與導航 ===== */
+@media (max-width: 768px) {
+
+  /* Header 整體：上下留白更小 */
+  header {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  /* 第一行：RH Logo + Dark 按鈕 */
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 第二行：導覽列排列成可換行但居中的模式 */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important;   /* ⭐ 導覽列置中 */
+    gap: 10px 14px;                       /* 上下10px 左右14px */
+    font-size: 14px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  /* Dark 按鈕：縮小，放右上 */
+  #theme-toggle {
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+}
+
     * { box-sizing: border-box; }
 
     /* 文字反白顏色：避免看不到字 */
@@ -526,24 +563,42 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <span class="logo-mark">RH.</span>
-      <span class="logo-text">REESE HUANG</span>
-    </div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-      <button id="theme-toggle" type="button">
-        <span id="theme-icon">🌙</span>
-        <span id="theme-label">Dark</span>
-      </button>
-    </nav>
-  </header>
+/* ===== 手機專用 Header 與導航 ===== */
+@media (max-width: 768px) {
+
+  /* Header 整體：上下留白更小 */
+  header {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  /* 第一行：RH Logo + Dark 按鈕 */
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 第二行：導覽列排列成可換行但居中的模式 */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important;   /* ⭐ 導覽列置中 */
+    gap: 10px 14px;                       /* 上下10px 左右14px */
+    font-size: 14px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  /* Dark 按鈕：縮小，放右上 */
+  #theme-toggle {
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+}
 
   <!-- HERO -->
   <div class="hero-card-wrapper">

@@ -5,10 +5,13 @@
   <title>Reese Huang | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- 網站小圖示：藍底白字 RH.（請在專案根目錄放 rh-favicon.svg） -->
+  <link rel="icon" href="rh-favicon.svg" type="image/svg+xml" />
+
   <style>
     * { box-sizing: border-box; }
 
-    /* 文字反白顏色：避免看不到字 */
+    /* 文字反白顏色 */
     ::selection {
       background: #dbeafe;
       color: #111827;
@@ -27,7 +30,7 @@
       transition: background 0.25s ease, color 0.25s ease;
     }
 
-    /* 錨點預留空間，避免被 header 擋住（桌機 / 平板） */
+    /* 錨點預留空間（桌機 / 平板） */
     #about,
     #experience,
     #skills,
@@ -37,7 +40,7 @@
     }
 
     /* =============================
-       HEADER / NAV（桌機預設）
+       HEADER / NAV（Light & Dark 都用藍色漸層）
        ============================= */
 
     header {
@@ -45,11 +48,16 @@
       top: 0;
       z-index: 1000;
       padding: 12px 24px;
-      background: #ffffffcc;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      /* 和 hero 使用同一條漸層，視覺上接在一起 */
+      background: linear-gradient(
+        90deg,
+        #1a2f46 0%,
+        #224159 40%,
+        #3e6b8f 100%
+      );
+      box-shadow: 0 1px 6px rgba(0,0,0,0.25);
       display: flex;
-      flex-direction: column; /* 上排：logo+dark，下排：nav */
+      flex-direction: column;           /* 上排：logo+dark，下排：nav */
       gap: 6px;
     }
 
@@ -63,12 +71,12 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #224159;
+      color: #ffffff;
     }
 
     .logo-mark {
       border-radius: 999px;
-      border: 1px solid #224159;
+      border: 1px solid #ffffff;
       padding: 4px 10px;
       font-weight: 700;
       font-size: 13px;
@@ -87,11 +95,11 @@
       gap: 16px;
       font-size: 14px;
       align-items: center;
-      justify-content: flex-end;  /* 桌機：nav 靠右 */
+      justify-content: flex-end;        /* 桌機：nav 靠右 */
     }
 
     nav a {
-      color: #224159;
+      color: #ffffff;
       font-weight: 500;
       padding-bottom: 2px;
       border-bottom: 1px solid transparent;
@@ -100,15 +108,15 @@
     }
 
     nav a:hover {
-      border-bottom: 1px solid #224159;
+      border-bottom: 1px solid #ffffff;
     }
 
     #theme-toggle {
       margin-left: 8px;
       border-radius: 999px;
-      border: 1px solid #224159;
+      border: 1px solid #ffffff;
       background: transparent;
-      color: #224159;
+      color: #ffffff;
       padding: 4px 10px;
       font-size: 12px;
       cursor: pointer;
@@ -119,9 +127,9 @@
     }
 
     #theme-toggle:hover {
-      background: #224159;
-      color: #ffffff;
-      border-color: #224159;
+      background: #ffffff;
+      color: #224159;
+      border-color: #ffffff;
       transform: translateY(-1px);
     }
 
@@ -190,15 +198,16 @@
     }
 
     /* =============================
-       HERO
+       HERO（Banner）
        ============================= */
 
     .hero-card-wrapper {
+      /* Light 模式：左深右淺藍漸層（和 header 同調） */
       background: linear-gradient(
-        135deg,
-        #224159 0%,
-        #2d5573 60%,
-        #224159 100%
+        90deg,
+        #1a2f46 0%,
+        #224159 40%,
+        #3e6b8f 100%
       );
       padding: 56px 16px 52px;
       border-radius: 0 0 20px 20px;
@@ -345,41 +354,12 @@
       color: #f1f5f9;
     }
 
-    body.dark-mode header {
-      background: #020617ee;
-      box-shadow: 0 1px 10px rgba(0,0,0,0.6);
-      border-bottom: 1px solid #1f2937;
-    }
+    /* header 在 dark-mode 仍保持同一條藍色漸層，不覆蓋 */
 
-    body.dark-mode .logo,
-    body.dark-mode .logo-mark,
-    body.dark-mode .logo-text {
-      color: #ffffff;
-      border-color: #ffffff;
-    }
-
-    body.dark-mode nav a {
-      color: #ffffff;
-    }
-
-    body.dark-mode #theme-toggle {
-      border-color: #ffffff;
-      color: #ffffff;
-    }
-
-    body.dark-mode #theme-toggle:hover {
-      background: #ffffff;
-      color: #020617;
-    }
-
+    /* Dark 模式：hero 跟底色一樣（不再用漸層） */
     body.dark-mode .hero-card-wrapper {
-      background: linear-gradient(
-        135deg,
-        #020617 0%,
-        #0b1220 50%,
-        #020617 100%
-      );
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      background: #020617;
+      box-shadow: none;
     }
 
     body.dark-mode .hero-card,
@@ -433,7 +413,7 @@
        RESPONSIVE
        ============================= */
 
-    /* 平板（橫向 iPad） */
+    /* 平板（橫向） */
     @media (max-width: 1024px) {
       .page {
         padding: 20px 12px 32px;
@@ -459,7 +439,7 @@
         font-size: 15px;
       }
 
-      /* 讓手機版錨點往下多留一點空間，避免被 header 蓋住 */
+      /* 手機版錨點多留空間，避免被 header 蓋住 */
       #about,
       #experience,
       #skills,
@@ -480,7 +460,7 @@
 
       nav {
         width: 100%;
-        justify-content: center;         /* ⭐ 導覽列置中 */
+        justify-content: center;         /* 手機 nav 置中 */
         flex-wrap: wrap;
         gap: 8px 14px;
         font-size: 14px;
@@ -775,3 +755,4 @@
 
 </body>
 </html>
+

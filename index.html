@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reese Huang | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    /* 文字反白顏色：避免看不到字 */
+    ::selection {
+      background: #dbeafe;
+      color: #111827;
+    }
+    body.dark-mode ::selection {
+      background: #4b5563;
+      color: #f9fafb;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    /* 錨點預留空間，避免被 header 擋住 */
+    #about,
+    #experience,
+    #skills,
+    #portfolio,
+    #contact {
+      scroll-margin-top: 80px;
+    }
+
+    /* =============================
+       NAV
+       ============================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffffcc;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #224159;
+    }
+
+    .logo-mark {
+      border-radius: 999px;
+      border: 1px solid #224159;
+      padding: 4px 10px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-text {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #224159;
+      font-weight: 500;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      border-bottom: 1px solid #224159;
+    }
+
+    #theme-toggle {
+      margin-left: 8px;
+      border-radius: 999px;
+      border: 1px solid #224159;
+      background: transparent;
+      color: #224159;
+      padding: 4px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    #theme-toggle:hover {
+      background: #224159;
+      color: #ffffff;
+      border-color: #224159;
+      transform: translateY(-1px);
+    }
+
+    /* =============================
+       PAGE / SECTIONS
+       ============================= */
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px 24px 26px;
+      border: 1px solid #E3E4E2;
+      margin-bottom: 24px;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #224159;
+      margin-bottom: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    h3 {
+      color: #224159;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    a { color: #224159; }
+    a:hover { text-decoration: underline; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 20px;
+    }
+
+    .pill-list,
+    .focus-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill,
+    .tag {
+      border-radius: 999px;
+      border: 1px solid #B6B9B4;
+      background: #F3F4F3;
+      padding: 4px 10px;
+      font-size: 13px;
+      color: #224159;
+    }
+
+    /* =============================
+       HERO
+       ============================= */
+
+    .hero-card-wrapper {
+      background: linear-gradient(
+        135deg,
+        #224159 0%,
+        #2d5573 60%,
+        #224159 100%
+      );
+      padding: 56px 16px 52px;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      margin-bottom: 24px;
+    }
+
+    .hero-card {
+      max-width: 960px;
+      margin: 0 auto;
+      color: #ffffff;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-size: 36px;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-main {
+      font-size: 15px;
+      max-width: 620px;
+      margin-bottom: 10px;
+    }
+
+    .hero-meta {
+      font-size: 13px;
+      color: #e7e7e7;
+      margin-bottom: 10px;
+    }
+
+    .hero-card .tag {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.5);
+      color: #ffffff;
+      backdrop-filter: blur(4px);
+    }
+
+    /* =============================
+       EXPERIENCE / PORTFOLIO 卡片
+       ============================= */
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-item,
+    .project-card {
+      border: 1px solid #E3E4E2;
+      padding: 14px 14px 18px;
+      border-radius: 10px;
+      background: white;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card-header,
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .card-header-logo,
+    .project-header-logo {
+      border: 1px solid #224159;
+      color: #224159;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .card-item h3,
+    .project-card h3 {
+      color: #224159;
+      font-size: 16px;
+      margin: 0 0 2px 0;
+    }
+
+    .meta-line,
+    .project-meta {
+      font-size: 12px;
+      color: #777;
+      margin: 0 0 4px 0;
+    }
+
+    .card-item ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .project-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* Portfolio 標題置中 */
+    #portfolio h2 {
+      text-align: center;
+    }
+
+    /* =============================
+       SKILLS
+       ============================= */
+
+    .skills-grid {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .skill-label {
+      font-weight: 600;
+      color: #224159;
+    }
+
+    /* =============================
+       DARK MODE
+       ============================= */
+
+    body.dark-mode {
+      background: #020617;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode header {
+      background: #020617ee;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.6);
+      border-bottom: 1px solid #1f2937;
+    }
+
+    body.dark-mode .logo,
+    body.dark-mode .logo-mark,
+    body.dark-mode .logo-text {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    body.dark-mode nav a {
+      color: #ffffff;
+    }
+
+    body.dark-mode #theme-toggle {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    body.dark-mode #theme-toggle:hover {
+      background: #ffffff;
+      color: #020617;
+    }
+
+    body.dark-mode .hero-card-wrapper {
+      background: linear-gradient(
+        135deg,
+        #020617 0%,
+        #0b1220 50%,
+        #020617 100%
+      );
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+
+    body.dark-mode .hero-card,
+    body.dark-mode .hero-card h1,
+    body.dark-mode .hero-card p,
+    body.dark-mode .hero-card .hero-subtitle {
+      color: #ffffff;
+    }
+
+    body.dark-mode section,
+    body.dark-mode .card-item,
+    body.dark-mode .project-card {
+      background: #111827;
+      border-color: #2c3446;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode .skill-label {
+      color: #ffffff;
+    }
+
+    body.dark-mode .meta-line,
+    body.dark-mode .project-meta {
+      color: #cbd5e1;
+    }
+
+    body.dark-mode .project-card p {
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .pill,
+    body.dark-mode .tag {
+      border-color: #4b5563;
+      background: #111827;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode a {
+      color: #ffffff;
+    }
+
+    body.dark-mode .card-header-logo,
+    body.dark-mode .project-header-logo {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    /* =============================
+       RESPONSIVE
+       ============================= */
+
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      nav { flex-wrap: wrap; justify-content: flex-end; }
+      .project-list { grid-template-columns: 1fr; }
+      .hero-card-wrapper {
+        padding: 40px 12px;
+      }
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <span class="logo-mark">RH.</span>
+      <span class="logo-text">REESE HUANG</span>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" type="button">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-label">Dark</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero-card-wrapper">
+    <div class="hero-card">
+      <div class="hero-subtitle">AI & CONTENT CURATION · NTU POLITICAL SCIENCE</div>
+      <h1>Reese Huang</h1>
+      <p class="hero-main">
+        政治學系學生，擅長將複雜資訊整理成清晰、好理解的內容。熟悉運用 ChatGPT、Gemini、NotebookLM 進行內容整理與知識架構化。
+      </p>
+      <div class="hero-meta">
+        Exploring：生成式 AI｜知識社群｜政治與公共行動
+      </div>
+      <div class="pill-list">
+        <span class="tag">台大政治系</span>
+        <span class="tag">AI 協作</span>
+        <span class="tag">內容策展</span>
+        <span class="tag">活動統籌</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ABOUT & FOCUS -->
+    <section id="about">
+      <div class="grid-2">
+        <div>
+          <h2>ABOUT</h2>
+          <p>我會吸收大量課程、講座與文章內容，並重新整理成清晰的知識框架。</p>
+          <p>在活動與學生自治中，我多扮演統整、協調與推動進度的角色。</p>
+        </div>
+        <div>
+          <h2>FOCUS</h2>
+          <div class="pill-list">
+            <div class="pill">AI × 知識社群</div>
+            <div class="pill">長文整理與筆記設計</div>
+            <div class="pill">專案協調</div>
+            <div class="pill">公共議題書寫</div>
+            <div class="pill">教學與一對一輔導</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2>EXPERIENCE</h2>
+
+      <div class="card-list">
+
+        <div class="card-item">
+          <div class="card-header">
+            <div class="card-header-logo">RH.</div>
+            <div>
+              <h3>學生自治與大型活動統籌</h3>
+              <div class="meta-line">社團聯合會主席 · 畢業舞會總召</div>
+            </div>
+          </div>
+          <ul>
+            <li>管理 60 人團隊，協助 49 個社團運作。</li>
+            <li>統籌 500–700 人活動，負責節目排程與場地協調。</li>
+            <li>跨處室與師生協調，處理突發狀況。</li>
+          </ul>
+        </div>
+
+        <div class="card-item">
+          <div class="card-header">
+            <div class="card-header-logo">RH.</div>
+            <div>
+              <h3>AI 協作與內容整理</h3>
+              <div class="meta-line">2024 – 至今</div>
+            </div>
+          </div>
+          <ul>
+            <li>使用 ChatGPT、Gemini、NotebookLM 進行長文摘要與重構。</li>
+            <li>整理 10+ 份課程與講座筆記，建立知識庫。</li>
+            <li>擅長重點提取、文本結構化與內容品質控管。</li>
+          </ul>
+        </div>
+
+        <div class="card-item">
+          <div class="card-header">
+            <div class="card-header-logo">RH.</div>
+            <div>
+              <h3>公共行動與媒體書寫</h3>
+              <div class="meta-line">救災志工 × 媒體部 × 家教</div>
+            </div>
+          </div>
+          <ul>
+            <li>參與馬太鞍溪災後整理與專題報導撰寫。</li>
+            <li>協助學生準備會考並設計複習講義。</li>
+            <li>結合現場經驗與資料比對，進行議題書寫。</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>SKILLS</h2>
+      <div class="skills-grid">
+        <div><span class="skill-label">AI &amp; Tools｜</span>ChatGPT、Gemini、NotebookLM、Notion</div>
+        <div><span class="skill-label">Content Structuring｜</span>長文摘要、重點提取、知識重構與框架化整理</div>
+        <div><span class="skill-label">Project Coordination｜</span>跨單位溝通、資源協調、流程設計</div>
+        <div><span class="skill-label">Event Management｜</span>活動統籌、舞台協作、時程管理</div>
+        <div><span class="skill-label">Writing｜</span>專題、筆記、知識轉譯與報導編輯</div>
+        <div><span class="skill-label">Research｜</span>資料比對、多輪驗證、議題整理</div>
+        <div><span class="skill-label">Soft Skills｜</span>主動、抗壓高、協作、責任感強</div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <h2>PORTFOLIO</h2>
+      <div class="project-list">
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-header-logo">RH.</div>
+            <div>
+              <h3>政治學課程整理</h3>
+              <div class="project-meta">AI 協作</div>
+            </div>
+          </div>
+          <p>將課程內容整理成清晰框架，方便日後複習與延伸閱讀。</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-header-logo">RH.</div>
+            <div>
+              <h3>國際關係講座摘要</h3>
+              <div class="project-meta">長文重構</div>
+            </div>
+          </div>
+          <p>以 AI 協助初步摘要，再由本人編排補充，整理為可閱讀的講座重點。</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-header-logo">RH.</div>
+            <div>
+              <h3>馬太鞍溪災後報導</h3>
+              <div class="project-meta">公共行動</div>
+            </div>
+          </div>
+          <p>結合現場志工經驗與資料查找，撰寫具脈絡與現場感的專題報導。</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-header-logo">RH.</div>
+            <div>
+              <h3>清末戰爭教學講義</h3>
+              <div class="project-meta">教學設計</div>
+            </div>
+          </div>
+          <p>將散落在不同冊的清末戰爭內容整合，設計成可教學的統整講義。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>CONTACT</h2>
+      <p>Email｜<a href="mailto:reesehuang1117@gmail.com">reesehuang1117@gmail.com</a></p>
+    </section>
+
+  </div>
+
+  <script>
+    const body = document.body;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
+
+    function setTheme(dark) {
+      if (dark) {
+        body.classList.add('dark-mode');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Light';
+      } else {
+        body.classList.remove('dark-mode');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Dark';
+      }
+    }
+
+    // 預設 Light
+    setTheme(false);
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark-mode');
+      setTheme(!isDark);
+    });
+  </script>
+
+</body>
+</html>
